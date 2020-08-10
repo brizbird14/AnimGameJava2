@@ -29,13 +29,11 @@ public class JPanelSketch extends JPanel {
     public void paintComponent(Graphics g) {
         
         g.setColor(Color.PINK);
-        g.drawRect(0, 500, 1200, 100);
-        g.drawRect(275, 400, 100, 100);
-        g.drawRect(750, 400, 100, 100);
+        g.drawRect(0, 600, 1200, 100);
+        g.drawRect(550, 500, 100, 100);
 
         g.setColor(Color.CYAN);
-        g.drawRect(175, 100, 300, 300);
-        g.drawRect(650, 100, 300, 300);
+        g.drawRect(100, 100, 1000, 400);
 
         super.paintComponent(g);
     }

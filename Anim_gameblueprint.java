@@ -20,6 +20,8 @@
  * 
  */
 
+ /* Global Variables */
+ 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -41,6 +43,7 @@ import java.io.IOException;
 import java.awt.image.BufferedImage; 
 import javax.imageio.ImageIO; 
 
+
 @SuppressWarnings("serial")
 public class Anim_gameblueprint extends JPanel implements ActionListener, KeyListener
 {
@@ -53,6 +56,8 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
     static JPanelPictures display1 = new JPanelPictures("300_1.jpg");
     static JPanelPictures display2 = new JPanelPictures("300_2.jpg");
     static JPanelPictures display3 = new JPanelPictures("300_3.png");
+
+    static LabelArea label1, label2, label3;
 
     int x = 0, velX = 0;
     int y = 0, velY = 0;
@@ -84,8 +89,8 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
     }
 
     public void actionPerformed(java.awt.event.ActionEvent e) {
-        int bound_x = win_width - 70;
-        int bound_y = win_height - 70;
+        int bound_x = win_width - 128;
+        int bound_y = win_height - 128;
         if (x < 0) {
             velX = 0;
             x = 0;
@@ -105,19 +110,9 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         x = x + velX;
         y = y + velY;
 
-        //Sets grid layer to visible depending on plumbob location
-        if (x > 175 && x < 475) {
-            if (y > 100 && y < 400) {
-                gridcanvas.setVisible(true);
-            } else {
-                gridcanvas.setVisible(false);
-            }
-        } else {
-            gridcanvas.setVisible(false);
-        }
-
         //Painting displays based on plumbob location
         //LABEL 1
+        /**
         if (x > 275 && x < 375) {
             if (y > 100 && y < 140) {
                 display1.setVisible(true);
@@ -146,6 +141,29 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
             } else {
                 display3.setVisible(false);
             }
+        } else {
+            display3.setVisible(false);
+        } */
+        
+        //Label 1
+
+        if (label1 == null) {
+            System.out.println("Label 1 is null");
+        }
+        if (label1 != null && label1.inArea(x, y) == true) {
+            display1.setVisible(true);
+        } else {
+            display1.setVisible(false);
+        }
+        //Label2
+        if (label2 != null && label2.inArea(x, y) == true) {
+            display2.setVisible(true);
+        } else {
+            display2.setVisible(false);
+        }
+        //Label3
+        if (label3 != null && label3.inArea(x, y) == true) {
+            display3.setVisible(true);
         } else {
             display3.setVisible(false);
         }
@@ -199,9 +217,12 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         JPanelSketch sketch = new JPanelSketch();
 
         //Creates label using JLabel imported class
-        JLabel label1 = new JLabel();
+        /** JLabel label1 = new JLabel();
         JLabel label2 = new JLabel();
-        JLabel label3 = new JLabel();
+        JLabel label3 = new JLabel(); */
+        label1 = new LabelArea (200, 100, 100, 20);
+        label2 = new LabelArea (350, 100, 100, 20);
+        label3 = new LabelArea (750, 100, 100, 20);
         label1.setText("1");
         label2.setText("2");
         label3.setText("3");
@@ -211,6 +232,13 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         label1.setBackground(Color.WHITE);
         label2.setBackground(Color.WHITE);
         label3.setBackground(Color.WHITE);
+
+        label1.setBounds(200, 100, 100, 20);
+        jf.add(label1);
+        label2.setBounds(350, 100, 100, 20);
+        jf.add(label2);
+        label3.setBounds(750, 100, 100, 20);
+        jf.add(label3);
         
         //Set bounds for JPanels and add lables to JFrame
         anim_bg.setBounds(0, 0, win_width, win_height);
@@ -219,12 +247,6 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         display1.setBounds(0, 0, win_width, win_height);
         display2.setBounds(0, 0, win_width, win_height);
         display3.setBounds(0, 0, win_width, win_height);
-        label1.setBounds(275, 100, 100, 40);
-        jf.add(label1);
-        label2.setBounds(175, 200, 40, 100);
-        jf.add(label2);
-        label3.setBounds(435, 200, 40, 100);
-        jf.add(label3);
         bp.setBounds(0, 0, win_width, win_height);
 
         //Set opacity or visiblity for layers
@@ -239,7 +261,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         display2.setOpaque(false);
         display3.setOpaque(false);
         anim_bg.setVisible(true);
-        gridcanvas.setVisible(false);
+        gridcanvas.setVisible(true);
         display1.setVisible(false);
         display2.setVisible(false);
         display3.setVisible(false);

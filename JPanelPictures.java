@@ -45,9 +45,9 @@ public class JPanelPictures extends JPanel {
             System.out.println(e);
         }
     }
-  
+
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
       g.drawImage(display_img, 650, 100, this);
     }
-  }
+}
