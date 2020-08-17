@@ -37,17 +37,20 @@ public class JPanelPictures extends JPanel {
 
     private Image display_img;
 
-    public JPanelPictures(String img) {
+    int TL_x, TL_y;
+    public JPanelPictures(String img, int x, int y) {
         try {
             File pos_img = new File(img);
             display_img = ImageIO.read(pos_img);
         } catch (IOException e) {
             System.out.println(e);
         }
+        TL_x = x;
+        TL_y = y;
     }
 
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
-      g.drawImage(display_img, 650, 100, this);
+      g.drawImage(display_img, TL_x, TL_y, this);
     }
 }
