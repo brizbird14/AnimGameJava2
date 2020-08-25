@@ -60,12 +60,12 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
 
     static int piccount = 14;
 
-    static LabelArea[] labels = new LabelArea[piccount];
+    static LabelArea[] labels = new LabelArea[piccount + 1];
 
-    static JPanelPictures[] pictures = new JPanelPictures[piccount];
+    static JPanelPictures[] pictures = new JPanelPictures[piccount + 1];
 
-    int x = 0, velX = 0;
-    int y = 0, velY = 0;
+    int x = 580, velX = 0;
+    int y = 540, velY = 0;
 
     public Anim_gameblueprint() {
         // Starts timer and ActionListener
@@ -82,7 +82,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
 
         // Read image to cursor icon
         try {
-            f = new File("plumbob.png");
+            f = new File("frog_cursor.png");
             img = ImageIO.read(f);
 
         } catch (final IOException e) {
@@ -94,30 +94,38 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
     }
 
     public void actionPerformed(final java.awt.event.ActionEvent e) {
-        final int bound_x = win_width - 128;
-        final int bound_y = win_height - 128;
-        if (x < 0) {
-            velX = 0;
-            x = 0;
-        }
-        if (x > bound_x) {
-            velX = 0;
-            x = bound_x;
-        }
-        if (y < 0) {
+        final int cursor_size = 40;
+        if (y < 100) {
             velY = 0;
-            y = 0;
+            y = 100;
         }
-        if (y > bound_y) {
-            velY = 0;
-            y = bound_y;
+        if (y > 100 && y < 500) {
+            if (x < 100) {
+                velX = 0;
+                x = 100;
+            }
+            if (x > 1100) {
+                velX = 0;
+                x = 1100 - cursor_size;
+            }
         }
+        if (y > 500) {
+            if (x < 550) {
+                velX = 0;
+                x = 550;
+            }
+            if (x > 650) {
+                velX = 0;
+                x = 650 - cursor_size;
+            }
+        }
+        
         x = x + velX;
         y = y + velY;
 
         // Painting displays based on plumbob location
         boolean hitLabel = false;
-        for (int counter = 0; counter < piccount; counter++) {
+        for (int counter = 0; counter < piccount + 1; counter++) {
             if (labels[counter] != null && labels[counter].inArea(x, y) == true) {
                 if (pictures[counter] != null) {
                     pictures[counter].setVisible(true);
@@ -176,7 +184,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         JPanelWithBackground anim_bg = null;
 
         try {
-            anim_bg = new JPanelWithBackground("Untitled_Artwork.jpg");
+            anim_bg = new JPanelWithBackground("museum_background.jpg");
         } catch (final IOException e) {
             System.out.println(e);
         }
@@ -184,9 +192,6 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         final JPanelSketch sketch = new JPanelSketch();
 
         //Creates label using JLabel imported class
-        /** JLabel label1 = new JLabel();
-        JLabel label2 = new JLabel();
-        JLabel label3 = new JLabel(); */
         labels[0] = new LabelArea(200, 100,100, 20);
         labels[1] = new LabelArea (350, 100, 100, 20);
         labels[2] = new LabelArea (750, 100, 100, 20);
@@ -201,6 +206,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         labels[11] = new LabelArea (100, 350, 20, 100);
         labels[12] = new LabelArea (1080, 150, 20, 100);
         labels[13] = new LabelArea (1080, 350, 20, 100);
+        labels[14] = new LabelArea (565, 100, 70, 70);
 
         pictures[0] = new JPanelPictures("500_1.png", x_pic_left, y_pic);
         pictures[1] = new JPanelPictures("500_2.png", x_pic_left, y_pic);
@@ -216,14 +222,16 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         pictures[11] = new JPanelPictures("500_12.png", x_pic_left, y_pic);
         pictures[12] = new JPanelPictures("500_13.png", x_pic_right, y_pic);
         pictures[13] = new JPanelPictures("500_14.png", x_pic_right, y_pic);
+        pictures[14] = new JPanelPictures("museum_map.png", 400, 400);
         
         for (int i_text = 0; i_text < piccount; i_text++) {
             labels[i_text].setText(Integer.toString(i_text+1));
+            labels[i_text].setForeground(Color.WHITE);
         }
-        for (int i_bg = 0; i_bg < piccount; i_bg++) {
+        for (int i_bg = 0; i_bg < piccount + 1; i_bg++) {
             labels[i_bg].setBackground(Color.WHITE);
         }
-        for (int i_add = 0; i_add < piccount; i_add++) {
+        for (int i_add = 0; i_add < piccount + 1; i_add++) {
             jf.add(labels[i_add]);
         }
 
@@ -241,40 +249,27 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         labels[11].setBounds(100, 350, 20, 100);
         labels[12].setBounds(1080, 150, 20, 100);
         labels[13].setBounds(1080, 350, 20, 100);
+        labels[14].setBounds(565, 100, 70, 70);
         
         //Set bounds for JPanels and add lables to JFrame
         anim_bg.setBounds(0, 0, win_width, win_height);
         sketch.setBounds(0, 0, win_width, win_height);
         gridcanvas.setBounds(0, 0, win_width, win_height);
         screencanvas.setBounds(0, 0, win_width, win_height);
-        for (int j_bounds = 0; j_bounds < piccount; j_bounds++) {
+        for (int j_bounds = 0; j_bounds < piccount + 1; j_bounds++) {
             pictures[j_bounds].setBounds(0, 0, win_width, win_height);
         }
-        /** pictures[0].setBounds(0, 0, win_width, win_height);
-        pictures[1].setBounds(0, 0, win_width, win_height);
-        pictures[2].setBounds(0, 0, win_width, win_height);
-        pictures[3].setBounds(0, 0, win_width, win_height);
-        pictures[4].setBounds(0, 0, win_width, win_height);
-        pictures[5].setBounds(0, 0, win_width, win_height);
-        pictures[6].setBounds(0, 0, win_width, win_height);
-        pictures[7].setBounds(0, 0, win_width, win_height);
-        pictures[8].setBounds(0, 0, win_width, win_height);
-        pictures[9].setBounds(0, 0, win_width, win_height);
-        pictures[10].setBounds(0, 0, win_width, win_height);
-        pictures[11].setBounds(0, 0, win_width, win_height);
-        pictures[12].setBounds(0, 0, win_width, win_height);
-        pictures[13].setBounds(0, 0, win_width, win_height); */
 
         bp.setBounds(0, 0, win_width, win_height);
 
         //Set opacity or visiblity for layers
         bp.setOpaque(false);
-        for (int i_opaque = 0; i_opaque < piccount; i_opaque++) {
-            labels[i_opaque].setOpaque(true);
+        for (int i_opaque = 0; i_opaque < piccount + 1; i_opaque++) {
+            labels[i_opaque].setOpaque(false);
             pictures[i_opaque].setOpaque(false);
         }
-        for (int i_visible = 0; i_visible < piccount; i_visible++) {
-            labels[i_visible].setOpaque(true);
+        for (int i_visible = 0; i_visible < piccount + 1; i_visible++) {
+            labels[i_visible].setVisible(true);
             pictures[i_visible].setVisible(false);
         }
 
@@ -284,7 +279,8 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         anim_bg.setOpaque(false);
 
         anim_bg.setVisible(true);
-        gridcanvas.setVisible(true);
+        gridcanvas.setVisible(false);
+        sketch.setVisible(false);
         screencanvas.setVisible(false);
         bp.setVisible(true);
 
@@ -292,7 +288,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         layers.add(anim_bg, Integer.valueOf(2));
         layers.add(gridcanvas, Integer.valueOf(3));
         layers.add(bp, Integer.valueOf(5));
-        for (int i_panel = 0; i_panel < piccount; i_panel++) {
+        for (int i_panel = 0; i_panel < piccount + 1; i_panel++) {
             layers.add(labels[i_panel], Integer.valueOf(4));
             layers.add(pictures[i_panel], Integer.valueOf(7));
         }

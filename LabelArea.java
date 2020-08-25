@@ -19,17 +19,27 @@ public class LabelArea extends JLabel {
         l_width = w;
         l_height = h;
     }
-
+    
     public boolean inArea(int cursor_x, int cursor_y) {
+        int cursor_x_right = cursor_x + 40;
+        int cursor_y_right = cursor_y + 40;
          if (cursor_x >= TL_x && cursor_x <= (TL_x + l_width)) {
              if (cursor_y >= TL_y && cursor_y <= (TL_y + l_height)) {
                  return true;
-             }
-             else {
+             } else if (cursor_y_right >= TL_y && cursor_y_right <= (TL_y + l_height)) {
+                 return true;
+             } else {
                  return false;
              }
-         }
-         else {
+         } else if (cursor_x_right >= TL_x && cursor_x_right <= (TL_x + l_width)) {
+            if (cursor_y >= TL_y && cursor_y <= (TL_y + l_height)) {
+                return true;
+            } else if (cursor_y_right >= TL_y && cursor_y_right <= (TL_y + l_height)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
              return false;
          }
     }
