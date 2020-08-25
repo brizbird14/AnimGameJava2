@@ -26,7 +26,7 @@ The process of developing this program was broken down into four steps:
 * Wrote a class *JPanelWithBackground* that takes a filename as input, and creates a layer with that image as the designated background
 * JLabels were made in the main method, as they are feature of the javax.swing plugin and did not have to be introduced as objects of a new class
 
-![Image 1] (ReadMe_img1.png)
+![Image 1](ReadMe_img1.png?raw=true "Image 1")
 
 ## Step 3: Interaction
 **Programming areas and objects to respond to cursor detection**
@@ -42,8 +42,8 @@ The process of developing this program was broken down into four steps:
 * Another *JLabel*, alongside one more object of *JPanelPictures*, was added to display a “map” when touched with the cursor.
 * Created a class, *JPanelScreen*, to darken the screen temporarily whenever a picture was displayed, in order to make the image stand out
 
-![Image 2.1] (https://octodex.github.com/images/yaktocat.png)
-![Image 2.2] (https://octodex.github.com/images/yaktocat.png)
+![Image 2.1](ReadMe_img2.1.png?raw=true)
+![Image 2.2](ReadMe_img2.2.png?raw=true)
 
 # What I Learned
 * I learned a lot about coding with javax.swing, and creating visual and user-controlled features in a JFrame.
