@@ -82,7 +82,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
 
         // Read image to cursor icon
         try {
-            f = new File("frog_cursor.png");
+            f = new File("ProgramPics/frog_cursor.png");
             img = ImageIO.read(f);
 
         } catch (final IOException e) {
@@ -184,7 +184,7 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         JPanelWithBackground anim_bg = null;
 
         try {
-            anim_bg = new JPanelWithBackground("museum_background.jpg");
+            anim_bg = new JPanelWithBackground("ProgramPics/museum_background.jpg");
         } catch (final IOException e) {
             System.out.println(e);
         }
@@ -208,21 +208,21 @@ public class Anim_gameblueprint extends JPanel implements ActionListener, KeyLis
         labels[13] = new LabelArea (1080, 350, 20, 100);
         labels[14] = new LabelArea (565, 100, 70, 70);
 
-        pictures[0] = new JPanelPictures("500_1.png", x_pic_left, y_pic);
-        pictures[1] = new JPanelPictures("500_2.png", x_pic_left, y_pic);
-        pictures[2] = new JPanelPictures("500_3.png", x_pic_right, y_pic);
-        pictures[3] = new JPanelPictures("500_4.png", x_pic_right, y_pic);
-        pictures[4] = new JPanelPictures("500_5.png", x_pic_left, y_pic);
-        pictures[5] = new JPanelPictures("500_6.png", x_pic_left, y_pic);
-        pictures[6] = new JPanelPictures("500_7.png", x_pic_right, y_pic);
-        pictures[7] = new JPanelPictures("500_8.png", x_pic_right, y_pic);
-        pictures[8] = new JPanelPictures("500_9.png", x_pic_left, y_pic);
-        pictures[9] = new JPanelPictures("500_10.png", x_pic_right, y_pic);
-        pictures[10] = new JPanelPictures("500_11.png", x_pic_left, y_pic);
-        pictures[11] = new JPanelPictures("500_12.png", x_pic_left, y_pic);
-        pictures[12] = new JPanelPictures("500_13.png", x_pic_right, y_pic);
-        pictures[13] = new JPanelPictures("500_14.png", x_pic_right, y_pic);
-        pictures[14] = new JPanelPictures("museum_map.png", 400, 400);
+        pictures[0] = new JPanelPictures("PictureFiles/500_1.png", x_pic_left, y_pic);
+        pictures[1] = new JPanelPictures("PictureFiles/500_2.png", x_pic_left, y_pic);
+        pictures[2] = new JPanelPictures("PictureFiles/500_3.png", x_pic_right, y_pic);
+        pictures[3] = new JPanelPictures("PictureFiles/500_4.png", x_pic_right, y_pic);
+        pictures[4] = new JPanelPictures("PictureFiles/500_5.png", x_pic_left, y_pic);
+        pictures[5] = new JPanelPictures("PictureFiles/500_6.png", x_pic_left, y_pic);
+        pictures[6] = new JPanelPictures("PictureFiles/500_7.png", x_pic_right, y_pic);
+        pictures[7] = new JPanelPictures("PictureFiles/500_8.png", x_pic_right, y_pic);
+        pictures[8] = new JPanelPictures("PictureFiles/500_9.png", x_pic_left, y_pic);
+        pictures[9] = new JPanelPictures("PictureFiles/500_10.png", x_pic_right, y_pic);
+        pictures[10] = new JPanelPictures("PictureFiles/500_11.png", x_pic_left, y_pic);
+        pictures[11] = new JPanelPictures("PictureFiles/500_12.png", x_pic_left, y_pic);
+        pictures[12] = new JPanelPictures("PictureFiles/500_13.png", x_pic_right, y_pic);
+        pictures[13] = new JPanelPictures("PictureFiles/500_14.png", x_pic_right, y_pic);
+        pictures[14] = new JPanelPictures("PictureFiles/museum_map.png", 400, 400);
         
         for (int i_text = 0; i_text < piccount; i_text++) {
             labels[i_text].setText(Integer.toString(i_text+1));
